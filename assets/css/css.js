@@ -10,7 +10,16 @@ const css = StyleSheet.create({
     textPage:{
         backgroundColor: 'gold',
         padding:20
-    }
+    },container2: {
+      flex: 1,
+      flexDirection:'row',
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+  },
+  button__home:{
+      marginRight: 40
+  }
   });
 
 
