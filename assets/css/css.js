@@ -19,7 +19,52 @@ const css = StyleSheet.create({
   },
   button__home:{
       marginRight: 40
-  }
+  },
+  textInput:{
+      marginTop:20,
+      borderColor:'black',
+      borderWidth:2,
+      width:350,
+      alignSelf:'center',
+      textAlign:'center' 
+  },
+  container__centralizado:{
+      alignContent:'center',
+      marginTop:200
+  },
+  darkbg:{
+    backgroundColor:"#333"
+},
+login__logomarca:{
+    marginBottom: 10
+},
+login__msg:(text='none')=>({
+    fontWeight:"bold",
+    fontSize: 22,
+    color:"#C0C0C0",
+    marginBottom: 15,
+    display: text
+}),
+login__form:{
+    width: "80%"
+},
+login__input:{
+    backgroundColor: "#fff",
+    fontSize: 19,
+    padding: 7,
+    marginBottom: 15
+},
+login__button:{
+    padding: 12,
+    backgroundColor: "#F58634",
+    alignSelf:"center",
+    borderRadius:5
+},
+login__buttonText:{
+    fontWeight:"bold",
+    fontSize: 22,
+    color:"#333"
+}
   });
 
 
