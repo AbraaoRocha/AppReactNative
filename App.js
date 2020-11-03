@@ -2,6 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {Home,Login,Rastreio} from './views';
+import AreaRestrita from './views/AreaRestrita/AreaRestrita';
 
 export default function App() {
 
@@ -30,7 +31,7 @@ export default function App() {
                 component={Login} 
                 />
         <Stack.Screen name="Rastreio" component={Rastreio} />
-        {/*<Stack.Screen name="AreaRestrita" component={AreaRestrita} />*/}
+        {<Stack.Screen name="AreaRestrita" component={AreaRestrita} />}
       </Stack.Navigator>
     </NavigationContainer>
 );

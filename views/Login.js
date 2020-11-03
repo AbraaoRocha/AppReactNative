@@ -2,7 +2,7 @@ import React, {useState,useEffect} from 'react';
 import { KeyboardAvoidingView, TextInput, TouchableOpacity, Text, View, Platform} from 'react-native';
 import {css} from '../assets/css/css';
 import AsyncStorage from '@react-native-community/async-storage';
-import {AreaRestrita} from '../views/AreaRestrita'
+import {AreaRestrita} from './AreaRestrita/AreaRestrita'
 
 export default function Login({navigation})
 {
@@ -31,10 +31,9 @@ export default function Login({navigation})
             setTimeout(()=>{
                 setDisplay('none');
             },5000);
-            await AsyncStorage.clear();
-        }else{
-            await AsyncStorage.setItem('userData', JSON.stringify(json));
-            navigation.navigate("AreaRestrita");
+            }else{
+                await AsyncStorage.setItem('userData', JSON.stringify(json));
+                navigation.navigate('AreaRestrita');
         }
     }
 
