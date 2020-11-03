@@ -1,8 +1,10 @@
 import React, {useState,useEffect} from 'react';
 import { KeyboardAvoidingView, TextInput, TouchableOpacity, Text, View, Platform} from 'react-native';
 import {css} from '../assets/css/css';
+import AsyncStorage from '@react-native-community/async-storage';
+import {AreaRestrita} from '../views/AreaRestrita'
 
-export default function Login()
+export default function Login({navigation})
 {
   const [display, setDisplay]=useState('none');
   const [user, setUser]=useState('');
@@ -29,6 +31,10 @@ export default function Login()
             setTimeout(()=>{
                 setDisplay('none');
             },5000);
+            await AsyncStorage.clear();
+        }else{
+            await AsyncStorage.setItem('userData', JSON.stringify(json));
+            navigation.navigate("AreaRestrita");
         }
     }
 
@@ -38,7 +44,6 @@ export default function Login()
             
             <View style={css.login__logomarca}>       
                   <View>
-                        <Text>{user} {password}</Text>
                     <Text style={css.login__msg(display)}>Usuário ou senha inválidos!</Text>
                   
                   </View>

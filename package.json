@@ -5,11 +5,17 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "install-react-navigation-native": "npm install @react-navigation/native --force",
+    "expo-install-react-navigation-native": "expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view --force",
+    "install-react-navigation-stack": "npm install @react-navigation/stack --force",
+    "install-react-navigation": "install-react-navigation-native && expo-install-react-navigation-native && install-react-navigation-stack"
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/native": "^5.8.2",
+    "@react-navigation/stack": "^5.11.1",
     "cors": "^2.8.5",
     "expo": "~39.0.2",
     "expo-status-bar": "~1.0.2",
