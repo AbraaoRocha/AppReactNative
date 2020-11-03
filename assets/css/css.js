@@ -56,11 +56,14 @@ login__input:{
 },
 login__button:{
     padding: 12,
+    textAlign:'center',
     backgroundColor: "#F58634",
     alignSelf:"center",
     borderRadius:5
 },
 login__buttonText:{
+    textAlign:'center',
+    width: '40%',
     fontWeight:"bold",
     fontSize: 22,
     color:"#333"

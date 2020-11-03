@@ -5,6 +5,32 @@ import {css} from '../assets/css/css';
 export default function Login()
 {
   const [display, setDisplay]=useState('none');
+  const [user, setUser]=useState('');
+  const [password, setPassword]=useState('');
+  const [login, setLogin]=useState('');
+
+
+  async function sendForm(){
+        let response= await 
+        fetch('http://192.168.100.36:3000/login',{
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: user,
+                password: password
+            })
+        });
+        let json=await response.json();
+        if(json === 'error'){
+            setDisplay('flex');
+            setTimeout(()=>{
+                setDisplay('none');
+            },5000);
+        }
+    }
 
 
     return(
@@ -12,7 +38,7 @@ export default function Login()
             
             <View style={css.login__logomarca}>       
                   <View>
-                    
+                        <Text>{user} {password}</Text>
                     <Text style={css.login__msg(display)}>Usuário ou senha inválidos!</Text>
                   
                   </View>
@@ -20,14 +46,14 @@ export default function Login()
 
             <View style={css.login__form}>
                 
-                <TextInput style={css.login__input} placeholder='Usuário:' />
+                <TextInput style={css.login__input} placeholder='Usuário:' onChangeText={text=>setUser(text)}/>
 
-                <TextInput style={css.login__input} placeholder='Senha:' secureTextEntry={true} />
+                <TextInput style={css.login__input} placeholder='Senha:' secureTextEntry={true} onChangeText={text=>setPassword(text)} />
                 
-                <TouchableOpacity style={css.login__button} onPress={()=>setDisplay('flex')}>
-                    
-                    <Text style={css.login__buttonText}>Entrar</Text>
-                
+                <TouchableOpacity title ='Entrar' style={css.login__button} onPress={()=>sendForm()}>
+                   
+                   <Text style={css.login__buttonText}>Entrar</Text>
+
                 </TouchableOpacity>
             
             </View>

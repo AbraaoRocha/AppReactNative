@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "AppBiWagner",
-    "slug": "AppBiWagner",
+    "name": "CursoRectNative",
+    "slug": "CursoRectNative",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
