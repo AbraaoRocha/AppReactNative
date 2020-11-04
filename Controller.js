@@ -91,6 +91,17 @@ app.post('/create',async (req,res)=>{
     res.send(JSON.stringify(response));
     });
 
+    app.post('/updateProduct', async(req,res)=>{
+        let response=await tracking.findOne({
+            include:[{model:product}],
+            where: {code: req.body.code}
+        });
+        response.name = req.name;
+        response.save();
+        response.local = req.local;
+        response.save();
+    });
+
 let port =process.env.PORT || 3000;
 app.listen(port,(req,res)=>{
     console.log('Servidor Rodando');
