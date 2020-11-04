@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, Image, Button, TextInput, TouchableOpacity} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import MenuAreaRestrita from '../../assets/components/MenuAreaRestrita';
 import {css} from '../../assets/css/css'
 import config from '../../config/config.json';
+
 
 export default function Cadastro({navigation}) {
     
@@ -19,7 +20,8 @@ export default function Cadastro({navigation}) {
 
     useEffect(()=>{
         randomCode();
-    },[]);
+        setProduct('');
+    },[response]);
 
     //Pegar o id do usuário
     async function getUser()
@@ -54,16 +56,27 @@ export default function Cadastro({navigation}) {
                 local: address
             })
         });
+        let json = await response.json();
+        setResponse(json);
     }
 
     return (
         <View style={[css.container, css.containerTop]}>
             <MenuAreaRestrita title='Cadastro' navigation={navigation} />
+
+            {response && (
+                <View>
+                    <Image source={{uri:response, height:180, width:180}} />
+                    <Button title='Compartilhar' />
+                </View>
+            )}
+
             <View style={css.login__input}>
-                <TextInput
-                        placeholder='Nome do Produto:'
-                        onChangeText={text=>setProduct(text)}
-                />
+            <TextInput
+                placeholder='Nome do Produto:'
+                onChangeText={text=>setProduct(text)}
+                value={product}
+            />
             </View>
 
             <TouchableOpacity style={css.login__button} onPress={()=>sendForm()}>
