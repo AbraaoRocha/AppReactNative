@@ -49,35 +49,21 @@ app.post('/verifyPass', async(req,res)=>{
     }
 });
 
-app.get('/create',async (req,res)=>{
-    let create=await user.create({
-        name: "joao",
-        password: "abc",
-        createdAt: new Date(),
-        updatedAt: new Date()
-    });
-    res.send('Usuário criado com sucesso!');
-});
+//Criação do produto no banco
+app.post('/create',async (req,res)=>{
+    let trackingId='';
+   await tracking.create({
+     userId: req.body.userId,
+       code: req.body.code,
+       local: req.body.local
+   }).then((response)=>{
+       trackingId+=response.id;
+   });
 
-app.get('/read', async (req,res)=>{
-    let read=await user.findAll({
-        raw:true,
-    });
-    res.send(read);
-    //console.log(read);
-});
-
-app.get('/update', async (req,res)=> {
-    let update=await user.findByPk(1).then((response)=>{
-            response.name='Abraão';
-            response.save();
-    });
-});
-
-app.get('/delete', async (req,res)=> {
-    user.destroy({
-        where: {id:3}
-    });
+   await product.create({
+       trackingId: trackingId,
+       name: req.body.product
+   });
 });
 
 let port=process.env.PORT || 3000;
