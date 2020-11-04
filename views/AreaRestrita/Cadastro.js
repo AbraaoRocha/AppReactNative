@@ -5,7 +5,6 @@ import MenuAreaRestrita from '../../assets/components/MenuAreaRestrita';
 import {css} from '../../assets/css/css'
 import config from '../../config/config.json';
 
-
 export default function Cadastro({navigation}) {
     
     const address = config.address;

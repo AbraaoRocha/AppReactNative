@@ -65,7 +65,6 @@ app.post('/create',async (req,res)=>{
        trackingId: trackingId,
        name: req.body.product
    });
-
    QRCode.toDataURL(req.body.code).then(url=>{
        QRCode.toFile(
         './assets/img/code.png',
@@ -74,6 +73,7 @@ app.post('/create',async (req,res)=>{
         res.send(JSON.stringify(url))
    })
   });
+
 
 let port=process.env.PORT || 3000;
 app.listen(port,(req,res)=>{
