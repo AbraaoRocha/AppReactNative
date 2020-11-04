@@ -22,9 +22,9 @@ export default function AreaRestrita() {
 
     return (
         <Tab.Navigator>
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name="Perfil" component={Profile} />
       <Tab.Screen name="Cadastro" component={Cadastro} />
-      <Tab.Screen name="Edicao" component={Edicao} />
+      <Tab.Screen name="Edição" component={Edicao} />
     </Tab.Navigator>
     );
 }

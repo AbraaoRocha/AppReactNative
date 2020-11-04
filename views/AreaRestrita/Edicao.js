@@ -1,11 +1,12 @@
 import React from 'react';
-import {Text, View, Button} from 'react-native';
+import { View} from 'react-native';
+import MenuAreaRestrita from '../../assets/components/MenuAreaRestrita';
+import {css} from '../../assets/css/css'
 
-export default function Edicao() {
-
+export default function Edicao({navigation}) {
     return (
-        <View>
-            <Text>Esse é o componente Edicao</Text>
+        <View style={[css.container, css.containerTop]}>
+            <MenuAreaRestrita title='Edição' navigation={navigation} />
         </View>
     );
 }

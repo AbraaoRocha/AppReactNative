@@ -32,6 +32,8 @@ export default function Login({navigation})
                 setDisplay('none');
             },5000);
             }else{
+                setUser('');
+                setPassword('');
                 await AsyncStorage.setItem('userData', JSON.stringify(json));
                 navigation.navigate('AreaRestrita');
         }

@@ -7,6 +7,9 @@ const css = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
+    containerTop:{
+        justifyContent:'flex-start'
+    },
     textPage:{
         backgroundColor: 'gold',
         padding:20
@@ -67,6 +70,28 @@ login__buttonText:{
     fontWeight:"bold",
     fontSize: 22,
     color:"#333"
+},
+area__title:{
+    width: '80%',
+    fontWeight:'bold',
+    fontSize:20,
+    color:'#fff',
+    textAlign:'center'
+},
+button__logout:{
+    textAlign:'right'
+},
+area__menu:{
+    flexDirection: 'row',
+    paddingTop: 40,
+    paddingBottom: 10,
+    width: '100%',
+    backgroundColor:'#111',
+    alignItems:'center',
+    justifyContent:'center'
+},
+button__home2:{
+    textAlign:'left'
 }
   });
 
