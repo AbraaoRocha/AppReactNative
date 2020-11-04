@@ -92,7 +92,18 @@ area__menu:{
 },
 button__home2:{
     textAlign:'left'
-}
+},
+qr__code:(display='flex')=>({
+    width:'100%',
+    height:'100%',
+    backgroundColor:'#000',
+    justifyContent:'center',
+    display: display
+}),
+qr__form:(display='none')=>({
+  width: '100%',
+  display:display
+})
   });
 
 
