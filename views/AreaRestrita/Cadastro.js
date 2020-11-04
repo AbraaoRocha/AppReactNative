@@ -4,9 +4,11 @@ import AsyncStorage from '@react-native-community/async-storage';
 import MenuAreaRestrita from '../../assets/components/MenuAreaRestrita';
 import {css} from '../../assets/css/css'
 import config from '../../config/config.json';
+import * as Sharing from 'expo-sharing';
+import * as FileSystem from 'expo-file-system';
 
 export default function Cadastro({navigation}) {
-    
+     
     const address = config.address;
     const [code,setCode] = useState(null);
     const [userId,setUserId] = useState(null);
@@ -59,6 +61,19 @@ export default function Cadastro({navigation}) {
         setResponse(json);
     }
 
+    //Compartilhar o QRCode
+async function shareQR()
+{
+    const image=config.urlRoot+'img/code.png';
+    FileSystem.downloadAsync(
+        image,
+        FileSystem.documentDirectory+'code.png'
+    ).then(({uri})=>{
+        Sharing.shareAsync(uri);
+    });
+    await Sharing.shareAsync();
+}
+
     return (
         <View style={[css.container, css.containerTop]}>
             <MenuAreaRestrita title='Cadastro' navigation={navigation} />
@@ -66,7 +81,7 @@ export default function Cadastro({navigation}) {
             {response && (
                 <View>
                     <Image source={{uri:response, height:180, width:180}} />
-                    <Button title='Compartilhar' />
+                    <Button title='Compartilhar' onPress={()=>shareQR()} />
                 </View>
             )}
 
