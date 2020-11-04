@@ -1,9 +1,9 @@
 import React, {useState,useEffect} from 'react';
 import {Text, View, Button, TextInput, TouchableOpacity} from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
 import MenuAreaRestrita from "../../assets/components/MenuAreaRestrita";
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import {css} from '../../assets/css/css';
+import config from '../../config/config';
 
 export default function Edicao({navigation}) {
     const [hasPermission, setHasPermission] = useState(null);
@@ -27,7 +27,24 @@ export default function Edicao({navigation}) {
         setDisplayQR('none');
         setDisplayForm('flex');
         setCode(data);
+        await searchProduct(data);
     }
+
+    async function searchProduct(codigo)
+{
+    let response=await fetch(config.urlRoot+'searchProduct',{
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            code: codigo
+        })
+    });
+    let json=await response.json();
+    setProduct(json.Products[0].name);
+}
 
     async function sendForm() {
 
@@ -49,7 +66,7 @@ export default function Edicao({navigation}) {
                     <TextInput
                             placeholder='Nome do Produto:'
                             onChangeText={text=>setProduct(text)}
-                        value={product}
+                            value={product}
                     />
                 </View>
 

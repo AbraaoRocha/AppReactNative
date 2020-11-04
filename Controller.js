@@ -8,7 +8,6 @@ const app=express();
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.static('assets'));
 
 let user=models.User;
 let tracking=models.Tracking;
@@ -66,6 +65,7 @@ app.post('/create',async (req,res)=>{
        trackingId: trackingId,
        name: req.body.product
    });
+
    QRCode.toDataURL(req.body.code).then(url=>{
        QRCode.toFile(
         './assets/img/code.png',
@@ -75,8 +75,23 @@ app.post('/create',async (req,res)=>{
    })
   });
 
+  app.get('/read', async (req,res)=>{
+    let read=await user.findAll({
+        raw:true,
+    });
+    res.send(read);
+    });
 
-let port=process.env.PORT || 3000;
+    //Pegar os dados do produto
+    app.post('/searchProduct', async (req,res)=>{
+    let response=await tracking.findOne({
+        include:[{model:product}],
+        where: {code: req.body.code}
+    });
+    res.send(JSON.stringify(response));
+    });
+
+let port =process.env.PORT || 3000;
 app.listen(port,(req,res)=>{
     console.log('Servidor Rodando');
 });
