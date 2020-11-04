@@ -2,7 +2,7 @@ import React, {useState,useEffect} from 'react';
 import { KeyboardAvoidingView, TextInput, TouchableOpacity, Text, View, Platform} from 'react-native';
 import {css} from '../assets/css/css';
 import AsyncStorage from '@react-native-community/async-storage';
-import {AreaRestrita} from './AreaRestrita/AreaRestrita'
+import config from './../config/config.json';
 
 export default function Login({navigation})
 {
@@ -14,7 +14,7 @@ export default function Login({navigation})
 
   async function sendForm(){
         let response= await 
-        fetch('http://192.168.100.36:3000/login',{
+        fetch(`${config.urlRoot}login`,{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -32,8 +32,6 @@ export default function Login({navigation})
                 setDisplay('none');
             },5000);
             }else{
-                setUser('');
-                setPassword('');
                 await AsyncStorage.setItem('userData', JSON.stringify(json));
                 navigation.navigate('AreaRestrita');
         }
